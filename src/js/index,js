@@ -1,0 +1,38 @@
+// PASSO 1: criar uma variavel no JS para tranalhar com a listagem de pokedevs
+const listaSelecaoPokedevs = document.querySelectorAll(".pokedev");
+
+//PASSO 2: Identificar elemento de clique no elemento da listagem
+
+listaSelecaoPokedevs.forEach(pokedev => {
+    pokedev.addEventListener("click", () => {
+
+        //PASSO 3: Feche qualquer cartão aberto anteriormente
+
+        const cartaoPokedevAberto = document.querySelector(".aberto");
+        if (cartaoPokedevAberto) {
+            cartaoPokedevAberto.classList.remove("aberto");
+        }
+
+        // PASSO 4: Obtenha o ID do Pokémon selecionado para saber qual carta abrir
+
+        const idPokedevSelecionado = pokedev.attributes.id.value;
+        const idCartaoPokedevParaAbrir = "cartao-" + idPokedevSelecionado;
+        const cartaoPokedevParaAbrir = document.getElementById(idCartaoPokedevParaAbrir);
+
+        // Verifique se o cartão existe antes de tentar abri-lo.
+
+        if (cartaoPokedevParaAbrir) {
+            cartaoPokedevParaAbrir.classList.add("aberto");
+        }
+
+
+        // PASSO 5: Remova a classe ativa do Pokémon selecionado anteriormente na lista
+        const pokedevAtivoNaLista = document.querySelector(".ativo");
+        if (pokedevAtivoNaLista) {
+            pokedevAtivoNaLista.classList.remove("ativo");
+        }
+
+       // PASSO 6: Adicione a classe ativa ao Pokémon selecionado na lista
+        pokedev.classList.add("ativo");
+    });
+});
